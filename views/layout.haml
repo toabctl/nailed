@@ -8,34 +8,41 @@
     %title #{@title}
     %link{:href => "/images/favicon.ico", :rel => "shortcut icon"}
   %body
-    .off-canvas-wrap{:data => {'offcanvas' => true}}
-      .inner-wrap
-        -# Mobile and Desktop devices
-        %nav.tab-bar
-          %section
-            %a.left-off-canvas-toggle.menu-icon
-              %span
-          %section.middle.tab-bar-section
-            %h1.title
-              %a{:href => '/',:style => "color:white"} #{@title}
-    
-        %aside.left-off-canvas-menu
-          %ul.off-canvas-list
-            %li
-              %a{:href => '/'}Home
-            %li 
-              %label Bugzilla
-            - @products.each do |product|
+    %nav.top-bar{:role => "navigation"}
+      %ul.title-area
+        %li.name
+          %h1
+            %a{:href => '/', :style => "color:white"} #{@title}
+        %li.toggle-topbar.menu-icon
+          %a{:href => '/'}
+            %span Menu
+      %section.top-bar-section
+        %ul.left
+          %li.has-form
+            %div.row.collapse
+              %div.large-8.small-9.columns
+                %input{:type => 'text', :placeholder => 'Search'}
+              %div.large-4.small-8.columns
+                %a.alert.button.expand{:href => '/'} Search
+        %ul.right
+          %li.divider
+          %li.has-dropdown.not-click
+            %a{:href => '#'}
+              Menu
+            %ul.dropdown
               %li
-                %a{:href => "/#{product.gsub(/ /,'_')}/bugzilla"} #{product}
-            %li
-              %label GitHub
-            - @github_repos.each do |repo|
+                %a{:href => '/'}Home
+              %li 
+                %label Bugzilla
+              - @products.each do |product|
+                %li
+                  %a{:href => "/#{product.gsub(/ /,'_')}/bugzilla"} #{product}
               %li
-                %a{:href => "/github/#{repo}"} #{repo}
-
-        %a.exit-off-canvas
-        = yield
+                %label GitHub
+              - @github_repos.each do |repo|
+                %li
+                  %a{:href => "/github/#{repo}"} #{repo}
+    = yield
     :javascript
       $(document).ready(function(){
         var timer;
