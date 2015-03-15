@@ -84,6 +84,9 @@ class Pulltrend
 
   belongs_to :repository
 end
+
+# TODO Jenkins specific tables
+
 DataMapper.finalize
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{File.join(File.expand_path(File.dirname(__FILE__)),'nailed.db')}")

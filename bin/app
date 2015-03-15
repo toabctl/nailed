@@ -167,5 +167,9 @@ class App < Sinatra::Base
     end
   end
 
+  get "/jenkins" do
+    # TODO
+  end
+
   run! if app_file == $0
 end

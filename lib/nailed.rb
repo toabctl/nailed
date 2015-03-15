@@ -2,8 +2,10 @@ require 'logger'
 require 'yaml'
 require "octokit"
 require "bicho"
+require "jenkins_api_client"
 require_relative "nailed/bugzilla"
 require_relative "nailed/github"
+require_relative "nailed/jenkins"
 require_relative "nailed/version"
 require  File.join(File.expand_path("..", File.dirname(__FILE__)),"db","database")
 
